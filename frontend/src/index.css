@@ -1,0 +1,7 @@
+@import "tailwindcss";
+
+body {
+  @apply min-h-screen bg-linear-to-br from-blue-200 via-sky-200 to-blue-300;
+
+  font-family: 'Nunito', sans-serif;
+}
