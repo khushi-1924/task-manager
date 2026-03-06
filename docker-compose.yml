@@ -8,7 +8,10 @@ services:
     ports:
       - "5000:5000"
   frontend:
-    build: ./frontend
+    build: 
+      context: ./frontend
+      args:
+        VITE_API_URL: http://3.27.14.127:5000/api
     container_name: frontend-task
     restart: always
     ports:
