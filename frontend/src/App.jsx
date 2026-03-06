@@ -5,34 +5,36 @@ import { MdDelete, MdEdit, MdSave } from "react-icons/md";
 import Snowfall from "react-snowfall";
 
 export default function App() {
+  const API = import.meta.env.VITE_API_URL;
+
   const [tasks, setTasks] = useState([]);
   const [title, setTitle] = useState("");
 
   const fetchTasks = async () => {
-    const res = await axios.get("http://localhost:5000/api/tasks");
+    const res = await axios.get(`${API}/api/tasks`);
     setTasks(res.data);
   };
 
   // eslint-disable-next-line react-hooks/set-state-in-effect
-  useEffect(() => { fetchTasks(); }, []);
+  useEffect(() => { fetchTasks(); });
 
   const addTask = async () => {
-    await axios.post("http://localhost:5000/api/tasks", { title });
+    await axios.post(`${API}/api/tasks`, { title });
     setTitle("");
     fetchTasks();
   };
 
   const toggle = async (id) => {
-    await axios.put(`http://localhost:5000/api/tasks/${id}`);
+    await axios.put(`${API}/api/tasks/${id}`);
     fetchTasks();
   };
 
   const del = async (id) => {
-    await axios.delete(`http://localhost:5000/api/tasks/${id}`);
+    await axios.delete(`${API}/api/tasks/${id}`);
     fetchTasks();
   };
 
-  // let khushi = 'unused var';
+  let khushi = 'unused var';
 
   return (
 
@@ -92,22 +94,24 @@ export default function App() {
 }
 
 function TaskItem({ task, refresh }) {
+  const API = import.meta.env.VITE_API_URL;
+
   const [editing, setEditing] = useState(false);
   const [newTitle, setNewTitle] = useState(task.title);
 
   const toggle = async () => {
-    await axios.put(`http://localhost:5000/api/tasks/${task._id}`);
+    await axios.put(`${API}/api/tasks/${task._id}`);
     refresh();
   };
 
   const del = async () => {
-    await axios.delete(`http://localhost:5000/api/tasks/${task._id}`);
+    await axios.delete(`${API}/api/tasks/${task._id}`);
     refresh();
   };
 
   const save = async () => {
     await axios.put(
-      `http://localhost:5000/api/tasks/${task._id}/edit`,
+      `${API}/api/tasks/${task._id}/edit`,
       { title: newTitle }
     );
     setEditing(false);
