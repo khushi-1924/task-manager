@@ -95,11 +95,7 @@ export default function App() {
 
 function TaskItem({ task, refresh }) {
   const API = import.meta.env.VITE_API_URL;
-<<<<<<< HEAD
 
-=======
-  
->>>>>>> b8cbaaec1b99f08c099ace4b9e23c77d7196d367
   const [editing, setEditing] = useState(false);
   const [newTitle, setNewTitle] = useState(task.title);
 
