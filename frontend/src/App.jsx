@@ -11,26 +11,26 @@ export default function App() {
   const [title, setTitle] = useState("");
 
   const fetchTasks = async () => {
-    const res = await axios.get(`${API}/api/tasks`);
+    const res = await axios.get(`${API}/tasks`);
     setTasks(res.data);
   };
 
-  // eslint-disable-next-line react-hooks/set-state-in-effect
-  useEffect(() => { fetchTasks(); });
+  // eslint-disable-next-line react-hooks/set-state-in-effect, react-hooks/exhaustive-deps
+  useEffect(() => { fetchTasks(); }, []);
 
   const addTask = async () => {
-    await axios.post(`${API}/api/tasks`, { title });
+    await axios.post(`${API}/tasks`, { title });
     setTitle("");
     fetchTasks();
   };
 
   const toggle = async (id) => {
-    await axios.put(`${API}/api/tasks/${id}`);
+    await axios.put(`${API}/tasks/${id}`);
     fetchTasks();
   };
 
   const del = async (id) => {
-    await axios.delete(`${API}/api/tasks/${id}`);
+    await axios.delete(`${API}/tasks/${id}`);
     fetchTasks();
   };
 
@@ -100,18 +100,18 @@ function TaskItem({ task, refresh }) {
   const [newTitle, setNewTitle] = useState(task.title);
 
   const toggle = async () => {
-    await axios.put(`${API}/api/tasks/${task._id}`);
+    await axios.put(`${API}/tasks/${task._id}`);
     refresh();
   };
 
   const del = async () => {
-    await axios.delete(`${API}/api/tasks/${task._id}`);
+    await axios.delete(`${API}/tasks/${task._id}`);
     refresh();
   };
 
   const save = async () => {
     await axios.put(
-      `${API}/api/tasks/${task._id}/edit`,
+      `${API}/tasks/${task._id}/edit`,
       { title: newTitle }
     );
     setEditing(false);
