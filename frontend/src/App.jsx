@@ -11,8 +11,19 @@ export default function App() {
   const [title, setTitle] = useState("");
 
   const fetchTasks = async () => {
-    const res = await axios.get(`${API}/tasks`);
-    setTasks(res.data);
+    try {
+      const res = await axios.get(`${API}/tasks`);
+      console.log("API response:", res.data);
+
+      if (Array.isArray(res.data)) {
+        setTasks(res.data);
+      } else {
+        setTasks([]);
+      }
+    } catch (err) {
+      console.error(err);
+      setTasks([]);
+    }
   };
 
   // eslint-disable-next-line react-hooks/set-state-in-effect, react-hooks/exhaustive-deps
