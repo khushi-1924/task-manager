@@ -42,14 +42,14 @@ jobs:
       - name: Build frontend Docker image
         run: docker build -t frontend ./frontend
   deploy:
-    need: build-and-lint
+    needs: build-and-lint
     if: github_event_name == 'push'
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout (optional)
         uses: actions/checkout@v4
-        
+
       - name: Add EC2 host to known_hosts
         run: |
           mkdir -p ~/.ssh
