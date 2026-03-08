@@ -43,7 +43,7 @@ jobs:
         run: docker build -t frontend ./frontend
   deploy:
     needs: build-and-lint
-    if: github_event_name == 'push'
+    if: github.event_name == 'push'
     runs-on: ubuntu-latest
 
     steps:
