@@ -11,7 +11,7 @@ services:
     build: 
       context: ./frontend
       args:
-        VITE_API_URL: http://3.27.14.127:5000/api
+        VITE_API_URL: http://3.26.244.161:5000/api
     container_name: frontend-task
     restart: always
     ports:
