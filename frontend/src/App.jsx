@@ -45,7 +45,7 @@ export default function App() {
     fetchTasks();
   };
 
-  let khushi = 'unused var';
+  // let khushi = 'unused var';
 
   return (
 
@@ -69,7 +69,7 @@ export default function App() {
       <div className="relative backdrop-blur-xl bg-white/70 p-8 rounded-3xl shadow-2xl w-105 border border-white/40">
 
         <h1 className="text-3xl font-bold text-blue-600 text-center mb-6 drop-shadow-sm">
-          🐳 Khushi's Task Manager
+          🐳 Task Manager
         </h1>
 
         <div className="flex gap-2 mb-6">
